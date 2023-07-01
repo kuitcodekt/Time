@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>12時間時計</title>
+    <style>
+        body {
+            background-color: black;
+            color: white;
+            font-size: 48px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div id="clock"></div>
+
+    <script>
+        function updateClock() {
+            var now = new Date();
+
+            // タイムゾーンの設定
+            var options = { timeZone: "Asia/Tokyo" }; // 例: "Asia/Tokyo"に変更することで日本の時刻を表示
+            var timeString = now.toLocaleTimeString("en-US", options);
+
+            // 時間のフォーマット
+            var timeArray = timeString.split(":");
+            var hour = parseInt(timeArray[0]);
+            var minute = timeArray[1];
+            var second = timeArray[2].split(" ")[0];
+            var amPm = timeArray[2].split(" ")[1];
+
+            // 日付のフォーマット
+            var optionsDate = { weekday: "long", year: "numeric", month: "long", day: "numeric" };
+            var dateString = now.toLocaleDateString("en-US", optionsDate);
+
+            // 時計の表示
+            var clock = document.getElementById("clock");
+            clock.innerHTML = hour + ":" + minute + ":" + second + " " + amPm + "<br>" +
+                dateString;
+
+            setTimeout(updateClock, 1000); // 1秒ごとに時計を更新
+        }
+
+        updateClock(); // 時計を初期化
+    </script>
+</body>
+</html>
