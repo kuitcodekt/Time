@@ -23,11 +23,11 @@
             var timeString = now.toLocaleTimeString("en-US", options);
 
             // 時間のフォーマット
-            var timeArray = timeString.split(":");
+            var timeArray = timeString.split(/:| /);
             var hour = parseInt(timeArray[0]);
             var minute = timeArray[1];
-            var second = timeArray[2].split(" ")[0];
-            var amPm = timeArray[2].split(" ")[1];
+            var second = timeArray[2];
+            var amPm = timeArray[3];
 
             // 曜日と月のフォーマット
             var weekdays = ["日", "月", "火", "水", "木", "金", "土"];
