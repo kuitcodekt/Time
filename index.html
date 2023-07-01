@@ -19,7 +19,7 @@
             var now = new Date();
 
             // タイムゾーンの設定
-            var options = { timeZone: "Asia/Tokyo" }; // 例: "Asia/Tokyo"に変更することで日本の時刻を表示
+            var options = { timeZone: "Asia/Tokyo" };
             var timeString = now.toLocaleTimeString("en-US", options);
 
             // 時間のフォーマット
@@ -31,17 +31,17 @@
 
             // 日付のフォーマット
             var optionsDate = { weekday: "long", year: "numeric", month: "long", day: "numeric" };
-            var dateString = now.toLocaleDateString("en-US", optionsDate);
+            var dateString = now.toLocaleDateString("ja-JP", optionsDate); // 曜日と月を日本語に設定
 
             // 時計の表示
             var clock = document.getElementById("clock");
             clock.innerHTML = hour + ":" + minute + ":" + second + " " + amPm + "<br>" +
                 dateString;
 
-            setTimeout(updateClock, 1000); // 1秒ごとに時計を更新
+            setTimeout(updateClock, 1000);
         }
 
-        updateClock(); // 時計を初期化
+        updateClock();
     </script>
 </body>
 </html>
