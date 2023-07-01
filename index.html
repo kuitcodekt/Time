@@ -30,8 +30,9 @@
             var amPm = timeArray[2].split(" ")[1];
 
             // 日付のフォーマット
-            var optionsDate = { weekday: "long", year: "numeric", month: "long", day: "numeric" };
-            var dateString = now.toLocaleDateString("ja-JP", optionsDate); // 曜日と月を日本語に設定
+            var weekdays = ["日", "月", "火", "水", "木", "金", "土"];
+            var months = ["1月", "2月", "3月", "4月", "5月", "6月", "7月", "8月", "9月", "10月", "11月", "12月"];
+            var dateString = now.getFullYear() + "年 " + months[now.getMonth()] + " " + now.getDate() + "日 (" + weekdays[now.getDay()] + ")";
 
             // 時計の表示
             var clock = document.getElementById("clock");
