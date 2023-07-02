@@ -19,8 +19,12 @@
             var now = new Date();
 
             // タイムゾーンの設定
-            var options = { timeZone: "Asia/Tokyo" };
-            var timeString = now.toLocaleTimeString("en-US", options);
+            var timeZoneOffset = now.getTimezoneOffset() * 60 * 1000; // ローカルタイムゾーンのオフセット（ミリ秒単位）
+            var localTime = now.getTime() - timeZoneOffset; // ローカルタイムゾーンに補正した時刻
+
+            // タイムゾーンの設定
+            var options = { timeZone: "Asia/Tokyo", hour12: true, hour: "numeric", minute: "numeric", second: "numeric" };
+            var timeString = new Date(localTime).toLocaleTimeString("en-US", options);
 
             // 時間のフォーマット
             var timeArray = timeString.split(/:| /);
@@ -32,9 +36,9 @@
             // 曜日と月のフォーマット
             var weekdays = ["日", "月", "火", "水", "木", "金", "土"];
             var months = ["1月", "2月", "3月", "4月", "5月", "6月", "7月", "8月", "9月", "10月", "11月", "12月"];
-            var date = now.getDate();
-            var weekday = weekdays[now.getDay()];
-            var month = months[now.getMonth()];
+            var date = new Date(localTime).getDate();
+            var weekday = weekdays[new Date(localTime).getDay()];
+            var month = months[new Date(localTime).getMonth()];
 
             // 時計の表示
             var clock = document.getElementById("clock");
