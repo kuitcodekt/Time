@@ -20,20 +20,13 @@
 
             // タイムゾーンの設定
             var timeZone = "Asia/Tokyo";
-            var options = { hour: "numeric", minute: "numeric", second: "numeric", hour12: true, timeZone: timeZone };
-            var timeString = now.toLocaleString("ja-JP", options);
+            now.toLocaleString("en-US", { timeZone: timeZone });
 
             // 時間のフォーマット
-            var timeArray = timeString.split(/:| /);
-            var hour = parseInt(timeArray[0]);
-            var minute = parseInt(timeArray[1]);
-            var second = parseInt(timeArray[2]);
-            var amPm = timeArray[3];
-
-            if (isNaN(hour) || isNaN(minute) || isNaN(second)) {
-                setTimeout(updateClock, 1000);
-                return;
-            }
+            var hour = now.getHours();
+            var minute = now.getMinutes();
+            var second = now.getSeconds();
+            var amPm = hour < 12 ? "AM" : "PM";
 
             // 曜日と月のフォーマット
             var weekdays = ["日", "月", "火", "水", "木", "金", "土"];
@@ -44,11 +37,14 @@
 
             // 時計の表示
             var clock = document.getElementById("clock");
-            clock.innerHTML = hour + "時 " + minute + "分 " + second + "秒 " + amPm + "<br>" +
+            clock.innerHTML = formatTime(hour) + "時 " + formatTime(minute) + "分 " + formatTime(second) + "秒 " + amPm + "<br>" +
                 month + date + "日 (" + weekday + ")";
 
-            requestAnimationFrame(updateClock); // タイマーを追加
+            setTimeout(updateClock, 1000);
+        }
 
+        function formatTime(time) {
+            return time < 10 ? "0" + time : time;
         }
 
         updateClock();
