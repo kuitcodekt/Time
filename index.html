@@ -21,7 +21,7 @@
             // タイムゾーンの設定
             var timeZone = "Asia/Tokyo";
             var options = { hour: "numeric", minute: "numeric", second: "numeric", hour12: true, timeZone: timeZone };
-            var timeString = new Intl.DateTimeFormat("ja-JP", options).format(now);
+            var timeString = now.toLocaleString("ja-JP", options);
 
             // 時間のフォーマット
             var timeArray = timeString.split(/:| /);
