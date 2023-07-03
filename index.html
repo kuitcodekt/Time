@@ -26,9 +26,14 @@
             // 時間のフォーマット
             var timeArray = timeString.split(/:| /);
             var hour = parseInt(timeArray[0]);
-            var minute = timeArray[1];
-            var second = timeArray[2];
+            var minute = parseInt(timeArray[1]);
+            var second = parseInt(timeArray[2]);
             var amPm = timeArray[3];
+
+            if (isNaN(hour) || isNaN(minute) || isNaN(second)) {
+                setTimeout(updateClock, 1000);
+                return;
+            }
 
             // 曜日と月のフォーマット
             var weekdays = ["日", "月", "火", "水", "木", "金", "土"];
