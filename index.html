@@ -47,7 +47,8 @@
             clock.innerHTML = hour + "時 " + minute + "分 " + second + "秒 " + amPm + "<br>" +
                 month + date + "日 (" + weekday + ")";
 
-            setTimeout(updateClock, 1000);
+            requestAnimationFrame(updateClock); // タイマーを追加
+
         }
 
         updateClock();
